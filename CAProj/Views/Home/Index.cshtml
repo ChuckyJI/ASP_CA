@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+    var productsList = (List<Products>)ViewBag.productsListPassValue;
+    var cart = (List<Cart>)ViewBag.cart;
+}
+
+
+<hr class="my-3"></hr>
+<div>
+    <div class="row align-items-center">
+        <div class="col-10">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="inputSearch">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary" onclick="searchContent()">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-2" align="right">
+            <img src="static/carticon.png" id=carticon></img>
+            <button type="button" class="btn btn-primary position-relative" >
+                <a href="@Url.Action("Cart","Order")" id="indexcartdisplay">Cart</a>
+                <span id="cartRemaining" class="visually-hidden">
+                    @{
+                        int totalN = 0;
+                        foreach (var ele in cart)
+                        {
+                            totalN += ele.cartQty;
+                        }
+                    }
+                    @totalN
+                </span>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="numberOfCart"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="containThePartial" class="container text-center"></div>
+
+<div class="container text-center" id="originalContent">
+    <div class="row">
+        @foreach (var product in productsList)
+        {
+            <div class="col-4" id="eachElement">
+                <div class="card ">
+                    <p class="visually-hidden" id="itemiddisplay" name="itemiddisplay">@product.itemID</p>
+                    @{ string url = @product.itemID + ".png"; }
+                    <img src="static/@url" class="card-img-top" height="310" width="550">
+                    <div class="card-body">
+                        <h4 class="card-title itemnamedisplay" id="itemnamedisplay" name="itemnamedisplay">@product.itemName</h4>
+                        <p class="card-text" id="cardTextProduct" align="left" name="cardTextProduct">@product.itemDescription</p>
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                @{
+                                    for (int i = 0; i < Convert.ToInt32(@product.itemReview); i++)
+                                    {
+                                        <img src="static/star.png" height="20px" width="20px"></img>
+                                    }
+                                }
+                            </div>
+                            <div class="col-auto">
+                                <div class="align-items-center itemreviewdisplay">@product.itemReview</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 itemPriceDisplay" align="left">
+                                <span>SGD: </span><span class="card-title text-black" align="left" name="itemPriceDisplay">@product.itemPrice</span><span>.00</span>
+                            </div>
+                            <div class="col-6" align="right" id="addToCartForm">
+                                @{ int a = Convert.ToInt32(@product.itemID)-1;}
+                                <button type="submit" class="btn btn-primary" id="acctocartdetails" onclick="addTheCart(@a)"> Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+setInterval(function(){
+    var numberOfCart = document.getElementById("numberOfCart");
+    var cartRemaining = parseInt(document.getElementById("cartRemaining").innerHTML);
+    var totalRemaining = cartRemaining+clickTime;
+    numberOfCart.innerHTML = totalRemaining;
+},50);
+</script>

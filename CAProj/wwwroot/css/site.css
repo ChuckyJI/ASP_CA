@@ -1,0 +1,119 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+#cardTextProduct{
+  height: 30px;
+}
+
+#eachElement{
+  padding: 25px;
+}
+
+#carticon{
+  height: 40px;
+  width: 40px;
+}
+
+#inputSearch{
+  width: 520px;
+}
+
+.itemreviewdisplay{
+  font-size: 14pt;
+  font-weight: bold;
+  color: #C89733;
+}
+
+.itemPriceDisplay{
+  font-size: 18pt;
+  font-weight: bold;
+  text-align: left;
+  
+}
+
+#indexcartdisplay{
+  color: white;
+  font-weight: bold;
+  text-decoration:none;
+}
+
+#forResultofEachElement{
+  padding: 2px;
+  margin-outside: 5px;
+}
+
+#timeDisplay{
+  font-size: 12pt;
+  margin-top:5px;
+  background-color: #f0f0f0;
+}
+
+#imgtext{
+  margin-left: 20px;
+}
+
+#contentText{
+  text-align: center;
+  place-items: center;
+  background-color: #F1F5EE;
+  margin-bottom: 30px;
+}
+
+#titleText{
+  margin-bottom: 20px;
+}
+
+#remarkInput{
+  font-size: 10px;
+}
+
+.row#mainTitleText,#forResultofEachElement,#contentText,#imageRow{
+  margin-left:0px;
+ }
+
+#generalTotalPrice{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.loginoutword{
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.orderReviewCSS{
+  margin-bottom: 10px;
+}
+
+.comfirmReview{
+  width: 80px;
+  height: 30px;
+}
+
+#loginmsg{
+  font-size: 16px;
+  height: 60px;
+  text-align: center;
+}

@@ -1,0 +1,91 @@
+
+@{
+    ViewBag.Title = "My Chart";
+    Layout = "_Layout";
+    var cart = (List<Cart>)ViewBag.cart;
+}
+
+@section Scripts
+{
+    <script src="js/cart.js"></script>
+}
+
+<h1 id="titleText">@ViewData["Title"]</h1>
+
+<hr class="my-4"></hr>
+
+<div class="container">
+    <div class="row" align="center" id="mainTitleText">
+        <div class="col-4"><h5>Items</h5></div>
+        <div class="col-2"><h5>Price</h5></div>
+        <div class="col-4"><h5>Quantity</h5></div>
+        <div class="col-2"><h5>Total Price</h5></div>
+    </div>
+</div>
+
+
+<div class="container">
+    @{ int loopNumber = 0;}
+    @foreach (var ele in cart)
+    {
+        <div class="row" id="forResultofEachElement">
+            <div class="row" id="contentText">
+                <div class="col-4">
+                    <div class="row" id="imageRow">
+                        <div class="col-auto">
+                            @{ string url = @ele.itemID + ".png";}
+                            <img src="static/@url" height="62px" width="110px" id="imgtext">
+                        </div>
+                        <div class="col-auto">
+                            <h5 class="carttoorderName">@ele.cartName</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <span>$</span>
+                    <span class="SingalPrice carttoorderPrice">@ele.itemPrice</span>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-5" align="right">
+                            @{ int a = @cart.Count;}
+                            <button type="button" class="btn btn-danger" onclick="minusnumber(@loopNumber)">-</button>
+                        </div>
+                        <div class="col-2">
+                            <h4 align="center" class="cartQtycount">@ele.cartQty</h4>
+                        </div>
+                        <div class="col-5" align="left">
+                            <button type="button" class="btn btn-danger" onclick="addnumber(@loopNumber)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <span>$</span> <span class="totalPrice"></span>
+                </div>
+            </div>
+        </div>
+        loopNumber++;
+    }
+</div>
+
+<hr class="my-4"></hr>
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-3 " align="center">
+        <span>Total Price: $ </span> <span id="generalTotalPrice"></span>
+    </div>
+</div>
+<div>
+    <div class="row my-4">
+        <div class="col-2">
+            <button type="submit" class="btn btn-dark" onclick="backToStore()">Back to Store</button>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-danger" onclick="clearTheCart()">Clear the Cart</button>
+        </div>
+        <div class="col-7"></div>
+        <div class="col-1">
+            <button type="submit" class="btn btn-info" onclick="cartToOrder()">Order</button>
+        </div>
+    </div>
+</div>

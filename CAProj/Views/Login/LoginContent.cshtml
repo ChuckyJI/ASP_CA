@@ -1,0 +1,22 @@
+
+@{
+    ViewBag.Title = "title";
+}
+@{
+    var name = (string)ViewBag.passName;
+}
+
+<div class="d-flex flex-row-reverse align-items-center me-5" align="center">
+    @{
+        if (@name == "")
+        {
+            <span class="btn btn-danger btn-sm" onclick="login()">Login</span>
+            <span class="loginoutword">Please log in!</span>
+        }
+        else
+        {
+            <span class="btn btn-danger btn-sm" onclick="logout()">Log out</span>
+            <span class="loginoutword">Welcome, @name!</span>
+        }
+    }
+</div>

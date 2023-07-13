@@ -1,0 +1,50 @@
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+    var msg = (List<string>) ViewBag.msg;
+}
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div id="loginmsg">
+      @{
+          if (@msg[1] == "1")
+          {
+            <div class="alert alert-primary">@msg[0]</div>
+          }
+          if (@msg[1] == "2")
+          {
+            <div class="alert alert-danger">@msg[0]</div>
+          }
+          if (@msg[1] == "3")
+          {
+            <div class="alert alert-danger">@msg[0]</div>
+          }
+      }
+    </div>
+    
+    <form method="post" asp-action="Login">
+      <div class="mb-3">
+        <label for="usernamelogin" class="form-label">User Name</label>
+        <input type="text" class="form-control" id="usernamelogin" name="usernamelogin" required>
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword" name="inputPassword" required>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Without Login</a>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-2" align="right">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-3"></div>
+</div>
+

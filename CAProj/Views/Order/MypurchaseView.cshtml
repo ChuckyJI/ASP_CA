@@ -1,0 +1,89 @@
+
+@{
+    ViewBag.Title = "title";
+    var orderListOriginal = (List<Orders>)ViewBag.orderListPassOriginalValue;
+}
+
+<div class="container" id ="originalOrderPartial" >
+    @foreach (var order in orderListOriginal)
+    {
+        <div class="row" id="forResultofEachElement">
+            <div class="col-12" id="timeDisplay">@order.orderTime</div>
+            <div class="row" id="contentText">
+                <div class="col-4">
+                    <div class="row" id="imageRow">
+                        <div class="col-auto">
+                            @{string url = @order.itemID + ".png";}
+                            <img src="static/@url" height="62px" width="110px" id="imgtext"></img>
+                        </div>
+                        <div class="col-auto orderDetailsName" align="left">
+                            <h5>@order.orderName</h5>
+                            <span>(@order.userName)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">$ @order.orderPrice</div>
+                <div class="col-1">@order.orderQty</div>
+                <div class="col-2">
+                    @{
+                        float total = @order.orderPrice * @order.orderQty;
+                    }
+                    $ @total
+                </div>
+                <div class="col-2">
+                    <span class="orderDetailsTime visually-hidden">@order.orderTime</span>
+                    @{
+                        int year = @order.orderTime.Year;
+                        int month = @order.orderTime.Month;
+                        int day = @order.orderTime.Day;
+                        int hour = @order.orderTime.Hour;
+                        int minute = @order.orderTime.Minute;
+                        int second = @order.orderTime.Second;
+                        int itemID = Convert.ToInt16(@order.itemID);
+                        string totalnumber1 = System.Convert.ToString(year * second * minute);
+                        string totalnumber2 = System.Convert.ToString(hour * day);
+                        string totalnumber3 = System.Convert.ToString(month * itemID + second);
+                        for (int i = 1; i <= @order.orderQty; i++)
+                        {
+                            string totalnumber = totalnumber1 + "-" + totalnumber2 + "-" + totalnumber3 + "-" + Convert.ToString(i);
+                            @totalnumber
+                            <p></p>
+                        }
+                    }
+                </div>
+                <div class="col-2 align-items-center">
+                    @{
+                        <h5 class="orderReviewCSS">@order.orderReview</h5>
+                        <hr class="my-1"></hr>
+                        <div class="row">
+                            <div class="col-6" align="right">
+                                <select class="form-select form-select-sm orderDetailsReview" aria-label=".form-select-sm example" ordername="@order.orderName" ordertime="@order.orderTime" orderoriginalreview="@order.orderReview">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                @* can use the input label also *@
+                                @* <div id="remarkInput">input 1~5 </div> *@
+                                @* <input type="text" class="w-25 orderDetailsReview" ordername="@order.orderName" ordertime="@order.orderTime"/> *@
+                            </div>
+                            <div class="col-6" align="center">
+                                <button type="submit" class="btn btn-info btn-sm comfirmReview" onclick="upadtereview()">OK</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    var orderDetailsReview = document.getElementsByClassName("orderDetailsReview");
+    var orderReviewCSS = document.getElementsByClassName("orderReviewCSS");
+    for (var i = 0; i <orderDetailsReview.length ; i ++)
+    {
+        document.getElementsByClassName("orderDetailsReview")[i].value = parseInt(orderReviewCSS[i].innerHTML);
+    }
+</script>

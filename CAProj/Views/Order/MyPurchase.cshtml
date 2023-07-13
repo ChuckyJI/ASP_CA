@@ -1,0 +1,32 @@
+
+@{
+    ViewBag.Title = "My Purchase History";
+    Layout = "_Layout";
+    var orderListOriginal = (List<Orders>)ViewBag.orderListPassOriginalValue;
+}
+
+@section Scripts
+{
+    <script src="js/mypurchase.js"></script>
+}
+
+<h1 id="titleText">@ViewData["Title"]</h1>
+<a class="btn btn-outline-info btn-sm" onclick="showcurrentorder(1)">Show Recent 1 Order</a>
+<a class="btn btn-outline-info btn-sm" onclick="showcurrentorder(5)" id="showOrdersFivedays">Show Recent 5 Orders</a>
+<a class="btn btn-outline-info btn-sm" onclick="showcurrentorder(1000)">Show ALL Orders</a>
+
+
+<hr class="my-4"></hr>
+
+<div class="container">
+    <div class="row" align="center" id="mainTitleText">
+        <div class="col-4"><h5>Items</h5></div>
+        <div class="col-1"><h5>Price</h5></div>
+        <div class="col-1"><h5>Quantity</h5></div>
+        <div class="col-2"><h5>Total Price</h5></div>
+        <div class="col-2"><h5>Acticiation Code</h5></div>
+        <div class="col-2"><h5>Review</h5></div>
+    </div>
+</div>
+
+<div id ="originalOrderPartial" ></div>
